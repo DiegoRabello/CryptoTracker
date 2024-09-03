@@ -16,4 +16,12 @@
     color: aliceblue;
     text-transform: uppercase;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: 0.5 ease;
+}
+
+.nav-itemns li:hover, a:hover {
+    color: #47A663;
+    cursor: pointer;
+    transform: scale(1.2);
+    border-bottom: 0.5px dashed #47A663    ;
 }
