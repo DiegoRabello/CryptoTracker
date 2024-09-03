@@ -1,0 +1,19 @@
+.header {
+    width: 100%;
+    padding: 24px 32px;
+    
+}
+.nav-itemns {
+    display: flex;
+    gap: 16px;
+    align-items: end;
+    justify-content: space-evenly;
+    text-align: end;
+    
+}
+.nav-itemns li,a {
+    
+    color: aliceblue;
+    text-transform: uppercase;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
