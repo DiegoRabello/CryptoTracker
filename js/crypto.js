@@ -29,3 +29,30 @@ function loadHome() {
         })
         .catch(error => console.error('Erro ao carregar criptomoedas:', error));
 }
+function viewDetails(coinId) {
+    const url = https://api.coingecko.com/api/v3/coins/${coinId};
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const content = document.getElementById('content');
+            content.innerHTML = 
+                <><h2>${data.name} (${data.symbol.toUpperCase()})</h2><p>Preço Atual: $${data.market_data.current_price.usd}</p><p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p><p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p><canvas id="priceChart" width="400" height="200"></canvas><button onclick="loadHome()">Voltar</button></>
+            ;
+            // Simulação de gráfico simples com valores fictícios
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Preço (USD)',
+                        data: [30, 50, 60, 45, 70, 90, 100, 80, 60, 70, 110, 120],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false
+                    }]
+                }
+            });
+        })
+        .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
+}
