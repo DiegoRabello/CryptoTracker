@@ -8,7 +8,9 @@ main {
     width: 100%;
     padding: 24px 32px;
     height: 10vh;
+    background: linear-gradient(90deg, rgba(73, 73, 73, 0.3), rgba(73, 73, 73, 0.018)); /* Fundo semi-transparente */
 }
+
 .nav-itemns {
     display: flex;
     gap: 16px;
@@ -26,13 +28,14 @@ main {
 }
 
 .nav-itemns li:hover, a:hover {
-    color: #47A663;
+    color: #00ba38;
     cursor: pointer;
     transform: scale(1.05);
-    border-bottom: 0.5px solid #47A663    ;
+    border-bottom: 0.5px solid #00ba38    ;
 }
 aside {
-    background-color: #00ba38;
+    background-color: rgb(255, 255, 255);
+    background:linear-gradient(to right, rgb(0, 0, 0), rgb(15, 155, 15));
     width: 15%;
     height: 90vh;
 }
@@ -44,7 +47,7 @@ aside {
 }
 .content bold {
     font-weight: bold;
-    color: #fff;
+    color: #00ba38 ;
     font-size: 1.5em;
 }
 .content p  {
@@ -81,7 +84,7 @@ aside {
 }
 .pro strong {
     font-weight: bold;
-    color: #fff;
+    color: #00ba38;
     font-size: 1.5em;
 }
 .pro p {
@@ -102,6 +105,9 @@ aside {
     cursor: pointer;
     transition: 0.5 ease-in;
 }
-.footer-content {
+
+.pro button:hover {
+    background-color: #00ba38;
     color: #fff;
+    transform: scale(1.05);
 }
