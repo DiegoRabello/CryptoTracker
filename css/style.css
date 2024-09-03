@@ -8,7 +8,7 @@ main {
     width: 100%;
     padding: 24px 32px;
     height: 10vh;
-    background: linear-gradient(90deg, rgba(73, 73, 73, 0.3), rgba(73, 73, 73, 0.018)); /* Fundo semi-transparente */
+    background: linear-gradient(to right,rgba(68,70,69,0.5),rgba(49,49,49,0.01));
 }
 
 .nav-itemns {
@@ -31,11 +31,9 @@ main {
     color: #00ba38;
     cursor: pointer;
     transform: scale(1.05);
-    border-bottom: 0.5px solid #00ba38    ;
 }
 aside {
-    background-color: rgb(255, 255, 255);
-    background:linear-gradient(to right, rgb(0, 0, 0), rgb(15, 155, 15));
+    background: linear-gradient(to right,rgba(68,70,69,0.5),rgba(49,49,49,0.01));
     width: 15%;
     height: 90vh;
 }
@@ -104,10 +102,48 @@ aside {
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.5 ease-in;
+   
 }
-
 .pro button:hover {
     background-color: #00ba38;
     color: #fff;
     transform: scale(1.05);
+}
+.graphic {
+    margin-left: 20px;
+}
+.chart h2 {
+   
+    color: #00ba38;
+    font-size: 2em;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+.options-chart {
+    display: flex;
+}
+.options-chart button {
+    background-color: #ffffff;
+    width: 110px;
+    color: #00ba38;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: 0.5 ease-in;
+}
+.options-time {
+    margin-left:600px
+}
+.options-chart button:hover {
+    background-color: #00ba38;
+    color: #ffffff;
+    transform: scale(1.05);
+    border: 1px solid #00ba38;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.footer-content {
+    background: linear-gradient(to left,rgba(68,70,69,0.5),rgba(49,49,49,0.01));
+    height: 100vh;
 }
