@@ -56,3 +56,34 @@ function viewDetails(coinId) {
         })
         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
 }
+function toggleFavorite(id, name, symbol, price) {
+    const favoriteIndex = favorites.findIndex(coin => coin.id === id);
+
+    if (favoriteIndex > -1) {
+        favorites.splice(favoriteIndex, 1); // Remove dos favoritos
+    } else {
+        favorites.push({ id, name, symbol, price }); // Adiciona aos favoritos
+    }
+}
+
+function loadFavorites() {
+    const content = document.getElementById('content');
+    content.innerHTML = '<h2>Favoritos</h2>';
+
+    if (favorites.length === 0) {
+        content.innerHTML += '<p>Nenhuma criptomoeda favorita.</p>';
+        return;
+    }
+
+    const ul = document.createElement('ul');
+    ul.className = 'crypto-list';
+    favorites.forEach(coin => {
+        const li = document.createElement('li');
+        li.innerHTML = 
+            <><span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span><button onclick="viewDetails('${coin.id}')">Ver Detalhes</button><button onclick="toggleFavorite('${coin.id}', '${coin.name}', '${coin.symbol}', ${coin.price})">★</button></>
+        ;
+        ul.appendChild(li);
+    });
+
+    content.appendChild(ul);
+}
