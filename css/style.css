@@ -1,15 +1,23 @@
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
 .header {
     width: 100%;
     padding: 24px 32px;
-    
+    height: 10vh;
+    background: linear-gradient(90deg, rgba(73, 73, 73, 0.3), rgba(73, 73, 73, 0.018)); /* Fundo semi-transparente */
 }
+
 .nav-itemns {
     display: flex;
     gap: 16px;
     align-items: end;
     justify-content: space-evenly;
     text-align: end;
-    
+    height: 100%;
 }
 .nav-itemns li,a {
     
@@ -20,9 +28,86 @@
 }
 
 .nav-itemns li:hover, a:hover {
-    color: #47A663;
+    color: #00ba38;
     cursor: pointer;
     transform: scale(1.05);
-    border-bottom: 0.5px solid #47A663    ;
+    border-bottom: 0.5px solid #00ba38    ;
+}
+aside {
+    background-color: rgb(255, 255, 255);
+    background:linear-gradient(to right, rgb(0, 0, 0), rgb(15, 155, 15));
+    width: 15%;
+    height: 90vh;
+}
+.sidebar-nav {
+    color: #fff;
+    display: block;
+    padding: 24px 32px;
+    transition: 0.5 ease-in;
+}
+.content bold {
+    font-weight: bold;
+    color: #00ba38 ;
+    font-size: 1.5em;
+}
+.content p  {
+    margin-top: 10px;
+}
+.side-button {
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    background-color: #fff;
+    color: #00ba38;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.5 ease-in;
 }
 
+.content button:hover {
+    background-color: #00ba38;
+    color: #fff;
+    transform: scale(1.05);
+}
+.pro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    padding: 24px;
+    text-align: center;
+   
+    width: 100%;
+}
+.pro strong {
+    font-weight: bold;
+    color: #00ba38;
+    font-size: 1.5em;
+}
+.pro p {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+.pro button {
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    background-color: #fff;
+    color: #00ba38;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.5 ease-in;
+}
+
+.pro button:hover {
+    background-color: #00ba38;
+    color: #fff;
+    transform: scale(1.05);
+}
