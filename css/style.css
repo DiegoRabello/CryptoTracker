@@ -132,6 +132,7 @@ aside {
     margin-top: 30px;
     cursor: pointer;
     transition: 0.5 ease-in;
+    margin-left: 10px;
 }
 .options-time {
     margin-left:600px

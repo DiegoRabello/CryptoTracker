@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Tracker</title>
+    <title>início - CryptoTraker</title>
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="./img/icons8-peercoin-48.png" type="image/x-icon">
 </head>
-
 <body>
     <div class="site-container">
         <header class="header">
@@ -75,15 +75,15 @@
                                 <button>Gráfico</button>
                                 <button>Alocação</button>
                                 <button>Estatística</button>
-                                <div class="options-time">
+                                <!-- <div class="options-time">
                                     <button >24H</button>
                                     <button>7D</button>
                                     <button>30D</button>
                                     <button>90D</button>
                                     <button>ALL</button>
-                                </div>
+                                </div> -->
                             </div>
-                            <canvas id="meuGrafico" width="1200" height="500"></canvas>
+                            <canvas id="meuGrafico" width="1600" height="500"></canvas>
                              <script>
         var ctx = document.getElementById('meuGrafico').getContext('2d');
         var meuGrafico = new Chart(ctx, {
@@ -119,7 +119,7 @@
                                 <li><a href="">24h</a></li>
                                 <li><a href="">Holdings</a></li>
                                 <li><a href="">AVG. Buy Price</a></li>
-                                
+
                             </ul>
                         </header>
                         <div class="cryptos-tab">
