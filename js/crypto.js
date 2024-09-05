@@ -145,9 +145,13 @@ function viewDetails(coinId) {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     datasets: [{
                         label: 'Preço (USD)',
-                        data: [30, 50, 60, 45, 70, 90, 100, 80, 60, 70, 110, 120],
+                        data: [30, 50, 60, 45,50, 70, 90, 100, 80, 60, 70, 110, 120],
                         borderColor: 'rgba(0, 186, 56, 1)',
-                        fill: false
+                        
+                        fill:  {
+                            target: 'origin',
+                            above: 'rgba(0, 186, 56, 0.02)'  // Area will be red above the origin
+                        }
                     }]
                 }
             });
@@ -189,3 +193,4 @@ function loadFavorites() {
     content.appendChild(ul);
 }
 app.loadHome();
+app.loadFavorites

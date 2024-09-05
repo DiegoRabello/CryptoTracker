@@ -31,6 +31,6 @@ h2 {
     color: rgba(0, 186, 56, 1); /* Cor do texto dos títulos */
     font-size: 1.6em; /* Tamanho da fonte dos títulos */
     line-height: 1.2em; /* Altura da linha dos títulos */
-    margin-top: 60px; /* Margem superior dos títulos */
+    margin-top: 10px; /* Margem superior dos títulos */
     text-align: center; /* Alinha o texto dos títulos ao centro */
 }
