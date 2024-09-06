@@ -272,3 +272,17 @@
   padding: 24px;
   box-sizing: border-box;
 }
+.crypto-favorites span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #008e2b;  
+    width: 20%;
+    padding: 9px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #fff;
+    ont-size: 1.2em;
+    line-height: 1.5;
+}
