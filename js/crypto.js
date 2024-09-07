@@ -33,44 +33,121 @@ function loadHome() {
         .catch(error => console.error('Erro ao carregar criptomoedas:', error));
 }
 
+// function viewDetails(coinId) {
+//     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
+
+//     fetch(url)
+//         .then(response => response.json())
+//         .then(data => {
+//             const content = document.getElementById('content');
+//             content.innerHTML = `
+//                 <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
+//                 <p>Preço Atual: $${data.market_data.current_price.usd}</p>
+//                 <p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p>
+//                 <p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p>
+//                 <canvas id="priceChart" width="1400" height="500"></canvas>
+//                 <button class = "button-voltar" onclick="loadHome()">Voltar</button>
+//             `;
+//             const ctx = document.getElementById('priceChart').getContext('2d');
+//             const chart = new Chart(ctx, {
+//                 type: 'line',
+//                 data: {
+//                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+//                     datasets: [{
+//                         label: 'Preço (USD)',
+//                         data: [30, 50, 60, 45, 50, 70, 90, 100, 80, 60, 70, 110, 120],
+//                         borderColor: 'rgba(0, 186, 56, 1)',
+
+//                         fill: {
+//                             target: 'origin',
+//                             above: 'rgba(0, 186, 56, 0.02)'  // Area will be red above the origin
+//                         }
+//                     }]
+//                 }
+//             });
+//             console.log(coin)
+//         })
+//         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
+// }
 function viewDetails(coinId) {
+    // URL para obter dados de mercado
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
-                <p>Preço Atual: $${data.market_data.current_price.usd}</p>
-                <p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p>
-                <p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p>
-                <canvas id="priceChart" width="1400" height="500"></canvas>
-                <button class = "button-voltar" onclick="loadHome()">Voltar</button>
-            `;
+            // Obtém o histórico de preços separadamente
+            const chartUrl = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30&interval=daily`;
 
-            const ctx = document.getElementById('priceChart').getContext('2d');
-            const chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Preço (USD)',
-                        data: [30, 50, 60, 45, 50, 70, 90, 100, 80, 60, 70, 110, 120],
-                        borderColor: 'rgba(0, 186, 56, 1)',
+            fetch(chartUrl)
+                .then(response => response.json())
+                .then(chartData => {
+                    // Obtendo o histórico de preços
+                    const prices = chartData.prices;
+                    const labels = prices.map(price => new Date(price[0]).toLocaleDateString());
+                    const chartPrices = prices.map(price => price[1]);
 
-                        fill: {
-                            target: 'origin',
-                            above: 'rgba(0, 186, 56, 0.02)'  // Area will be red above the origin
+                    // Atualizando o conteúdo da sidebar com os detalhes da moeda e o logo
+                    const sidebarNav = document.querySelector('.sidebar-nav .content');
+                    sidebarNav.innerHTML = `
+                        <div class="crypto-sidebar-details">
+                            <h2>${data.name.toUpperCase()}</h2>
+                        </div>
+                        <p>Preço Atual: $${data.market_data.current_price.usd}</p>
+                        <p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p>
+                        <p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p>
+                        <button class="side-button" onclick="loadHome()">Voltar</button>
+                    `;
+
+                    // Atualizando o conteúdo principal da página com o gráfico e o logo
+                    const content = document.getElementById('content');
+                    content.innerHTML = `
+                        <div class="crypto-main-details">
+                            <img src="${data.image.large}" alt="${data.name} logo" class="crypto-logo-main" />
+                            <h2>${data.name.toUpperCase()}</h2>
+                        </div>
+                        <canvas id="priceChart" width="1400" height="500"></canvas>
+                        <button class="button-voltar" onclick="loadHome()">Voltar</button>
+                    `;
+
+                    // Configurando o gráfico com os dados obtidos
+                    const ctx = document.getElementById('priceChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: `Preço de ${data.name.toUpperCase()} (USD)`,
+                                data: chartPrices,
+                                borderColor: 'rgba(0, 186, 56, 1)',
+                                fill: {
+                                    target: 'origin',
+                                    above: 'rgba(0, 186, 56, 0.1)' // Área preenchida acima da linha
+                                }
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Data'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Preço (USD)'
+                                    }
+                                }
+                            }
                         }
-                    }]
-                }
-            });
-            console.log(coin)
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar histórico de preços:', error));
         })
         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
 }
-
 function toggleFavorite(id, name, symbol, price) {
     const favoriteIndex = favorites.findIndex(coin => coin.id === id);
 
@@ -85,37 +162,6 @@ function toggleFavorite(id, name, symbol, price) {
 }
 
 function loadFavorites() {
-
-
-    //     const criptofavorites = document.getElementById('criptofavorites');
-    //     criptofavorites.innerHTML = '<h2>Favoritos</h2>';
-
-    //     if (favorites.length === 0) {
-    //         criptofavorites.innerHTML += '<p>Nenhuma criptomoeda favorita.</p>';
-    //         return;
-    //     }
-    //     if (storage) {
-    //     favorites = JSON.parse(storage); // Recupera favoritos do localStorage
-    //     } else {
-    //     favorites = []; // Caso contrário, inicializa com uma lista vazia
-    //     }
-
-
-    // const ul = document.createElement('ul');
-    // ul.className = 'crypto-favorites'; 
-
-    // favorites.forEach(coin => {
-    //     const li = document.createElement('li');
-    //     li.innerHTML = `
-    //         <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>`;
-    //     ul.appendChild(li);
-    // });
-
-    // document.getElementById('criptofavorites').appendChild(ul);
-
-    // // Salva os favoritos atualizados no localStorage
-    // localStorage.setItem(DB_KEY, JSON.stringify(favorites));
-    // Obtém o contêiner onde os favoritos serão exibidos
     const ul = document.querySelector('.crypto-favorites');
 
     ul.innerHTML = ''
@@ -135,13 +181,16 @@ function loadFavorites() {
     favorites.forEach(coin => {
         const li = document.createElement('li');
         li.innerHTML = `
-        <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>`;
+        <span>${coin.name} (${coin.symbol.toUpperCase()}): $${coin.price}</span>
+        <button onclick="viewDetails('${coin.id}')">Ver Detalhes</button>
+        <button onclick="toggleFavorite('${coin.id}', '${coin.name}', '${coin.symbol}', ${coin.current_price})">★</button>`;  
         ul.appendChild(li);
     });
 
 
     // Atualiza o localStorage com a lista de favoritos (se necessário)
     localStorage.setItem(DB_KEY, JSON.stringify(favorites));
+    
 
 }
 
