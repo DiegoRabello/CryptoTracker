@@ -60,7 +60,16 @@
     display: block;
     transition: 0.5s ease-in;
 }
-
+.sidebar-nav input {
+    width: 100%;
+    padding: 10px 8px;
+    border: none;
+    border-bottom: 1px solid #00ba38;
+    font-size: 0.8em;
+    outline: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
 .content bold {
     font-weight: bold;
     color: #00ba38;

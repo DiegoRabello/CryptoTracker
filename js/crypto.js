@@ -33,42 +33,6 @@ function loadHome() {
         .catch(error => console.error('Erro ao carregar criptomoedas:', error));
 }
 
-// function viewDetails(coinId) {
-//     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
-
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(data => {
-//             const content = document.getElementById('content');
-//             content.innerHTML = `
-//                 <h2>${data.name} (${data.symbol.toUpperCase()})</h2>
-//                 <p>Preço Atual: $${data.market_data.current_price.usd}</p>
-//                 <p>Maior preço de todos os tempos: $${data.market_data.ath.usd}</p>
-//                 <p>Menor preço de todos os tempos: $${data.market_data.atl.usd}</p>
-//                 <canvas id="priceChart" width="1400" height="500"></canvas>
-//                 <button class = "button-voltar" onclick="loadHome()">Voltar</button>
-//             `;
-//             const ctx = document.getElementById('priceChart').getContext('2d');
-//             const chart = new Chart(ctx, {
-//                 type: 'line',
-//                 data: {
-//                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-//                     datasets: [{
-//                         label: 'Preço (USD)',
-//                         data: [30, 50, 60, 45, 50, 70, 90, 100, 80, 60, 70, 110, 120],
-//                         borderColor: 'rgba(0, 186, 56, 1)',
-
-//                         fill: {
-//                             target: 'origin',
-//                             above: 'rgba(0, 186, 56, 0.02)'  // Area will be red above the origin
-//                         }
-//                     }]
-//                 }
-//             });
-//             console.log(coin)
-//         })
-//         .catch(error => console.error('Erro ao carregar detalhes da criptomoeda:', error));
-// }
 function viewDetails(coinId) {
     // URL para obter dados de mercado
     const url = `https://api.coingecko.com/api/v3/coins/${coinId}`;
@@ -122,7 +86,7 @@ function viewDetails(coinId) {
                                 borderColor: 'rgba(0, 186, 56, 1)',
                                 fill: {
                                     target: 'origin',
-                                    above: 'rgba(0, 186, 56, 0.1)' // Área preenchida acima da linha
+                                    above: 'rgba(0, 186, 56, 0.1)' // Área abaixo da linha
                                 }
                             }]
                         },
@@ -174,8 +138,6 @@ function loadFavorites() {
         ul.innerHTML = '<p>Nenhuma criptomoeda favorita.</p>';
         return; // Encerra a função se não houver favoritos
     }
-
-    // Cria uma lista de favoritos
 
     // Adiciona cada criptomoeda favorita à lista
     favorites.forEach(coin => {
